@@ -1,0 +1,209 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    font-family: Quicksand, sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-wrapper {
+    width: 100rem;
+    height: 70rem;
+    background-color: #eee;
+    border-radius: 3rem;
+    box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.banner {
+    position: absolute;
+    top: 14.7%;
+    left: -30rem;
+    text-align: center;
+    color: #fff;
+    width: 30rem;
+    z-index: 100;
+    transition: left 0.8s;
+}
+
+.container.change .banner {
+    left: 5rem;
+}
+
+.banner h1 {
+    font-size: 4rem;
+    margin-bottom: 3rem;
+}
+
+.banner p {
+    font-size: 2rem;
+    margin-bottom: 0.4rem;
+}
+
+.blue-bg {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #030514, #070a28, #171e40);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    transition: width 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+    color: white;
+}
+
+.container.change .blue-bg {
+    width: 40%;
+}
+
+.blue-bg button {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 19rem;
+    height: 5rem;
+    background-color: transparent;
+    border: 0.1rem solid #fff;
+    border-radius: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.blue-bg .logo {
+    transition: 1.5s;
+}
+
+.blue-bg img {
+    position: absolute;
+    top: 14%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16rem;
+    transition: width 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.blue-bg .logo-name {
+    position: absolute;
+    top: 35.5%;
+    left: 50%;
+    font-family: Conthrax;
+    font-size: 4rem;
+    transform: translateX(-50%);
+    transition: width 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.blue-bg .logo-ml {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    font-family: Conthrax;
+    font-size: 1.5rem;
+    transform: translateX(-50%);
+    transition: width 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.blue-bg .logo.change {
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.form {
+    width: 60rem;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10rem 0;
+    transition: left 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.form ul {
+    list-style: none;
+}
+
+.form li {
+    margin-bottom: 1rem;
+}
+
+.container.change .form {
+    left: 40rem;
+}
+
+.form h1 {
+    font-size: 4rem;
+    color: #030514;
+}
+
+.form p {
+    font-size: 1.8rem;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+.input-row {
+    display: flex;
+    flex-direction: row;
+    width: 50rem;
+    margin-bottom: 1rem;
+    gap: 2rem;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group input {
+    width: 24rem;
+    height: 5rem;
+    padding: 1rem 1rem 1rem 3rem;
+    background-color: #ddd;
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.input-group i {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.form button {
+    width: 16rem;
+    height: 5rem;
+    background-color: #030514;
+    border: none;
+    border-radius: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    color: #fff;
+    margin-top: 1.2rem;
+    cursor: pointer;
+}
+
+.containerBtn {
+    display: flex;
+    gap: 1.25rem;
+}
