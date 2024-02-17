@@ -55,5 +55,6 @@ document.querySelector(".form").addEventListener("submit", function (event) {
     })
     .catch(error => {
       console.error("Erro ao enviar requisição:", error);
+      alert("Erro: o servidor está indisponível. Tente novamente mais tarde.");
     });
 });
