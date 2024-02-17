@@ -190,6 +190,53 @@ html {
     color: #555;
 }
 
+.input-group i.info {
+    position: absolute;
+    top: 50%;
+    left: 21rem;
+    transform: translateY(-50%);
+    opacity: 0.3;
+    font-size: 1.7rem;
+    color: #555;
+}
+
+@keyframes slide {
+    0% {
+        top: 5%;
+    }
+
+    100% {
+        top: -5%;
+    }
+}
+
+.input-group i.info:hover+.infobox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.infobox {
+    position: absolute;
+    top: -5%;
+    right: 12.5%;
+    transform: translateY(-50%);
+    width: 18rem;
+    background-color: rgba(3, 5, 20, 0.8);
+    border-radius: 0.5rem;
+    animation: slide 0.5s;
+    pointer-events: none;
+    display: none;
+}
+
+.infobox p {
+    font-size: 1.3rem;
+    margin: 0;
+    padding: 0.3rem;
+    color: white;
+}
+
 .form button {
     width: 16rem;
     height: 5rem;
