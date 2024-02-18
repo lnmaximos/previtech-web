@@ -16,9 +16,7 @@
     <!-- A FAZER:
     RESPONSIVIDADE
     ALTERAR O TIPO DOS INPUTS - SEXO, PAÍS, MEMBRO ATIVO, TEM CARTÃO
-    VALIDAÇÃO DOS CAMPOS
-    DIMINUIR GAP ENTRE OS RESULTADOS
-    MELHORAR A TRANSIÇÃO? -->
+    VALIDAÇÃO DOS CAMPOS -->
 </head>
 
 <body>
@@ -42,8 +40,8 @@
                 </div>
                 <button type="button" class="slideBtn">Realizar previsão</button>
             </div>
-            <form class="form show-form">
-                <i class="fa-solid fa-arrow-right hide-arrow" onclick="arrowRight()"></i>
+            <form class="form">
+                <i class="fa-solid fa-arrow-right hide" onclick="arrow()"></i>
                 <h1>Formulário</h1>
                 <p>insira os dados do cliente</p>
                 <ul>
@@ -137,8 +135,8 @@
                     <button type="reset" class="esvaziarBtn">Esvaziar campos</button>
                 </div>
             </form>
-            <div class="results">
-                <i class="fa-solid fa-arrow-left arrow hide-arrow" onclick="arrowLeft()"></i>
+            <div class="results hide">
+                <i class="fa-solid fa-arrow-left" onclick="arrow()"></i>
                 <h1>Resultado</h1>
                 <p id="acuracia"></p>
                 <p id="precisao"></p>
