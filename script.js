@@ -2,6 +2,7 @@ const container = document.querySelector(".container");
 const logo = document.querySelector(".blue-bg .logo");
 const form = document.querySelector(".form");
 const results = document.querySelector(".results");
+const arrowRight = document.querySelector(".fa-arrow-right");
 const slideBtn = document.querySelector(".blue-bg button");
 
 let isSliding = false;
@@ -19,7 +20,7 @@ slideBtn.addEventListener("click", () => {
   isSliding = !isSliding;
 });
 
-document.querySelector(".form").addEventListener("submit", function (event) {
+form.addEventListener("submit", function (event) {
   event.preventDefault();
 
   const formData = {
@@ -56,18 +57,8 @@ document.querySelector(".form").addEventListener("submit", function (event) {
       document.getElementById("recall").textContent = `Recall: ${recall}`;
       document.getElementById("predicao").textContent = `Predição: ${predicao}`;
 
-      if (form.classList.contains("show-form")) {
-        form.classList.remove("show-form");
-        form.classList.add("hide-form");
-        results.classList.remove("hide-results");
-        results.classList.add("show-results");
-        document.querySelector(".fa-arrow-left").classList.remove("hide-arrow");
-      } else {
-        form.classList.remove("hide-form");
-        form.classList.add("show-form");
-        results.classList.remove("show-results");
-        results.classList.add("hide-results");
-      }
+      form.classList.toggle("hide");
+      results.classList.toggle("hide");
     })
     .catch(error => {
       console.error("Erro ao enviar requisição:", error);
@@ -75,21 +66,12 @@ document.querySelector(".form").addEventListener("submit", function (event) {
     });
 });
 
-function arrowLeft() {
-  form.classList.remove("hide-form");
-  form.classList.add("show-form");
-  results.classList.remove("show-results");
-  results.classList.add("hide-results");
-  document.querySelector(".fa-arrow-right").classList.remove("hide-arrow");
-}
-
-function arrowRight() {
-  form.classList.remove("show-form");
-  form.classList.add("hide-form");
-  results.classList.remove("hide-results");
-  results.classList.add("show-results");
+function arrow() {
+  form.classList.toggle("hide");
+  results.classList.toggle("hide");
+  arrowRight.classList.remove("hide");
 }
 
 document.querySelector(".esvaziarBtn").addEventListener("click", () => {
-  document.querySelector(".fa-arrow-right").classList.add("hide-arrow");
+  arrowRight.classList.add("hide");
 });
