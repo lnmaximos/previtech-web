@@ -134,7 +134,7 @@ html {
     justify-content: space-around;
     align-items: center;
     padding: 10rem 0;
-    transition: left 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: left 1.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 1s, visibility 1s;
 }
 
 .form ul {
@@ -158,6 +158,67 @@ html {
     font-size: 1.8rem;
     color: #555;
     margin-bottom: 2rem;
+}
+
+.results {
+    width: 60rem;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 60rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10rem 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: right 1.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 1s, visibility 1s;
+}
+
+.container.change .results {
+    right: 0;
+}
+
+.results h1 {
+    font-size: 4rem;
+    color: #030514;
+}
+
+.results p {
+    font-size: 1.8rem;
+    color: #555;
+}
+
+.hide-form, .hide-results {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.show-form, .show-results {
+    opacity: 1;
+    visibility: visible;
+}
+
+.fa-arrow-left {
+    position: absolute;
+    top: 7%;
+    left: 7%;
+    cursor: pointer;
+    font-size: 3rem;
+}
+
+.fa-arrow-right {
+    position: absolute;
+    top: 7%;
+    right: 7%;
+    cursor: pointer;
+    font-size: 3rem;
+}
+
+.hide-arrow {
+    visibility: hidden;
+    opacity: 0;
 }
 
 .input-row {
