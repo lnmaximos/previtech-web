@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"/>
     <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/conthrax"/>
     <link rel="icon" type="image/x-icon" href="logo.ico">
+
+    <!-- A FAZER:
+    RESPONSIVIDADE
+    ALTERAR O TIPO DOS INPUTS - SEXO, PAÍS, MEMBRO ATIVO, TEM CARTÃO
+    VALIDAÇÃO DOS CAMPOS -->
 </head>
 
 <body>
@@ -35,7 +40,8 @@
                 </div>
                 <button type="button" class="slideBtn">Realizar previsão</button>
             </div>
-            <form class="form">
+            <form class="form show-form">
+                <i class="fa-solid fa-arrow-right hide-arrow" onclick="arrowRight()"></i>
                 <h1>Formulário</h1>
                 <p>insira os dados do cliente</p>
                 <ul>
@@ -129,6 +135,14 @@
                     <button type="reset" class="esvaziarBtn">Esvaziar campos</button>
                 </div>
             </form>
+            <div class="results">
+                <i class="fa-solid fa-arrow-left arrow hide-arrow" onclick="arrowLeft()"></i>
+                <h1>Resultado</h1>
+                <p id="acuracia"></p>
+                <p id="precisao"></p>
+                <p id="recall"></p>
+                <p id="predicao"></p>
+            </div>
         </div>
     </div>
 
