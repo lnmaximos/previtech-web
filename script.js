@@ -1,5 +1,7 @@
 const container = document.querySelector(".container");
 const logo = document.querySelector(".blue-bg .logo");
+const form = document.querySelector(".form");
+const results = document.querySelector(".results");
 const slideBtn = document.querySelector(".blue-bg button");
 
 let isSliding = false;
@@ -49,12 +51,45 @@ document.querySelector(".form").addEventListener("submit", function (event) {
       const recall = data.recall;
       const predicao = data.predicao;
 
-      const resultadoText = `Acurácia: ${acuracia}%\nPrecisão: ${precisao}%\nRecall: ${recall}%\nPredição: ${predicao}`;
+      document.getElementById("acuracia").textContent = `Acurácia: ${acuracia}`;
+      document.getElementById("precisao").textContent = `Precisão: ${precisao}`;
+      document.getElementById("recall").textContent = `Recall: ${recall}`;
+      document.getElementById("predicao").textContent = `Predição: ${predicao}`;
 
-      alert(resultadoText);
+      if (form.classList.contains("show-form")) {
+        form.classList.remove("show-form");
+        form.classList.add("hide-form");
+        results.classList.remove("hide-results");
+        results.classList.add("show-results");
+        document.querySelector(".fa-arrow-left").classList.remove("hide-arrow");
+      } else {
+        form.classList.remove("hide-form");
+        form.classList.add("show-form");
+        results.classList.remove("show-results");
+        results.classList.add("hide-results");
+      }
     })
     .catch(error => {
       console.error("Erro ao enviar requisição:", error);
       alert("Erro: o servidor está indisponível. Tente novamente mais tarde.");
     });
+});
+
+function arrowLeft() {
+  form.classList.remove("hide-form");
+  form.classList.add("show-form");
+  results.classList.remove("show-results");
+  results.classList.add("hide-results");
+  document.querySelector(".fa-arrow-right").classList.remove("hide-arrow");
+}
+
+function arrowRight() {
+  form.classList.remove("show-form");
+  form.classList.add("hide-form");
+  results.classList.remove("hide-results");
+  results.classList.add("show-results");
+}
+
+document.querySelector(".esvaziarBtn").addEventListener("click", () => {
+  document.querySelector(".fa-arrow-right").classList.add("hide-arrow");
 });
