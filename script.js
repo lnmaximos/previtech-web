@@ -62,7 +62,7 @@ form.addEventListener("submit", function (event) {
     })
     .catch(error => {
       console.error("Erro ao enviar requisição:", error);
-      alert("Erro: o servidor está indisponível. Tente novamente mais tarde.");
+      alert("Erro: Ou servidor está indisponível ou você preencheu um ou mais campos de forma estúpida.");
     });
 });
 
