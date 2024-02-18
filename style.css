@@ -95,7 +95,6 @@ html {
     left: 50%;
     transform: translateX(-50%);
     width: 16rem;
-    transition: width 1.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .blue-bg .logo-name {
@@ -105,7 +104,6 @@ html {
     font-family: Conthrax;
     font-size: 4rem;
     transform: translateX(-50%);
-    transition: width 1.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .blue-bg .logo-ml {
@@ -115,7 +113,6 @@ html {
     font-family: Conthrax;
     font-size: 1.5rem;
     transform: translateX(-50%);
-    transition: width 1.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .blue-bg .logo.change {
@@ -123,30 +120,30 @@ html {
     transition: 0.5s;
 }
 
-.form {
+.form, .results {
     width: 60rem;
     height: 100%;
     position: absolute;
     top: 0;
-    left: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
     padding: 10rem 0;
-    transition: left 1.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 1s, visibility 1s;
 }
 
-.form ul {
-    list-style: none;
-}
-
-.form li {
-    margin-bottom: 1rem;
+.form { 
+    left: 0;
+    justify-content: space-around;
+    transition: left 1.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.6s, visibility 0.6s;
 }
 
 .container.change .form {
     left: 40rem;
+}
+
+.form li {
+    margin-bottom: 1rem;
+    list-style: none;
 }
 
 .form h1 {
@@ -161,19 +158,9 @@ html {
 }
 
 .results {
-    width: 60rem;
-    height: 100%;
-    position: absolute;
-    top: 0;
     right: 60rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10rem 0;
-    visibility: hidden;
-    opacity: 0;
-    transition: right 1.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 1s, visibility 1s;
+    justify-content: center;
+    transition: right 1.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.6s, visibility 0.6s;
 }
 
 .container.change .results {
@@ -183,40 +170,31 @@ html {
 .results h1 {
     font-size: 4rem;
     color: #030514;
+    margin-bottom: 4rem;
 }
 
 .results p {
     font-size: 1.8rem;
     color: #555;
+    margin-bottom: 1rem;
 }
 
-.hide-form, .hide-results {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.show-form, .show-results {
-    opacity: 1;
-    visibility: visible;
+.fa-arrow-left, .fa-arrow-right {
+    position: absolute;
+    top: 7%;
+    cursor: pointer;
+    font-size: 3rem;
 }
 
 .fa-arrow-left {
-    position: absolute;
-    top: 7%;
     left: 7%;
-    cursor: pointer;
-    font-size: 3rem;
 }
 
 .fa-arrow-right {
-    position: absolute;
-    top: 7%;
     right: 7%;
-    cursor: pointer;
-    font-size: 3rem;
 }
 
-.hide-arrow {
+.hide {
     visibility: hidden;
     opacity: 0;
 }
@@ -252,13 +230,14 @@ html {
 }
 
 .input-group i.info {
-    position: absolute;
-    top: 50%;
     left: 21rem;
-    transform: translateY(-50%);
     opacity: 0.3;
     font-size: 1.7rem;
-    color: #555;
+}
+
+.input-group i.info:hover+.infobox {
+    display: flex;
+    justify-content: center;
 }
 
 @keyframes slide {
@@ -269,13 +248,6 @@ html {
     100% {
         top: -5%;
     }
-}
-
-.input-group i.info:hover+.infobox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
 }
 
 .infobox {
