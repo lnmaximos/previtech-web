@@ -1,18 +1,33 @@
 from flask import Flask, request
-import pandas as pd
+from flask_cors import CORS
+from sqlalchemy import create_engine, text
+from sqlalchemy.orm import sessionmaker
 from sklearn.compose import make_column_transformer
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import OneHotEncoder, LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import precision_score, recall_score
+import pandas as pd
 import pickle
-from flask_cors import CORS
+
 app = Flask(__name__)
 CORS(app)
 
-# Importando os dados e excluindo a coluna id_cliente
-dados = pd.read_csv('churn.csv')
+# Configuração da conexão com o banco de dados SQLite
+db_path = "sqlite:///previtech.db"
+engine = create_engine(db_path, echo=False)
+
+# Criando uma instância da conexão com o banco de dados
+Session = sessionmaker(bind=engine)
+session = Session()
+
+# Consulta SQL para obter os dados da tabela clientes
+query = "SELECT * FROM clientes"
+
+# Executa a consulta e obtém os resultados em um DataFrame
+dados = pd.read_sql(query, engine)
+
+# Remove a coluna 'id_cliente' do DataFrame
 dados = dados.drop('id_cliente', axis=1)
 
 # Separação da base de dados e da coluna churn, armazenando em uma variável x e a variável alvo em y
@@ -54,15 +69,48 @@ def predict():
 
     data = request.get_json()
 
-    # Converte os dados de entrada em um array numpy
+    # Converte os dados de entrada em um DataFrame
     data_frame = pd.DataFrame(data)
 
     modelo_one_hot = pd.read_pickle('modelo_onehot.pkl')
     modelo_arvore = pd.read_pickle('modelo_arvore.pkl')
+
     # Realiza a previsão
     novo_dado_transformado = modelo_one_hot.transform(data_frame)
     previsao = modelo_arvore.predict(novo_dado_transformado)
-    print('previsao do modelo =', previsao)
+    print('Previsão do modelo =', previsao)
+
+    # Obtendo os dados originais do cliente
+    dados_cliente = data_frame.copy()
+
+    # Convertendo os dados para um dicionário
+    novo_cliente_data = dados_cliente.to_dict(orient='records')[0]
+
+    # Convertendo o valor de 'previsao' para um tipo aceito pelo banco de dados
+    previsao_para_bd = previsao[0] if isinstance(previsao, list) else previsao
+
+    # Inserindo na tabela novos_clientes
+    session.execute(text("""
+        INSERT INTO novos_clientes (score_credito, pais, sexo_biologico, idade, anos_de_cliente, saldo,
+                                    servicos_adquiridos, tem_cartao_credito, membro_ativo, salario_estimado, churn)
+        VALUES (:score_credito, :pais, :sexo_biologico, :idade, :anos_de_cliente, :saldo,
+                :servicos_adquiridos, :tem_cartao_credito, :membro_ativo, :salario_estimado, :churn)
+    """), {
+        'score_credito': novo_cliente_data['score_credito'],
+        'pais': novo_cliente_data['pais'],
+        'sexo_biologico': novo_cliente_data['sexo_biologico'],
+        'idade': novo_cliente_data['idade'],
+        'anos_de_cliente': novo_cliente_data['anos_de_cliente'],
+        'saldo': novo_cliente_data['saldo'],
+        'servicos_adquiridos': novo_cliente_data['servicos_adquiridos'],
+        'tem_cartao_credito': novo_cliente_data['tem_cartao_credito'],
+        'membro_ativo': novo_cliente_data['membro_ativo'],
+        'salario_estimado': novo_cliente_data['salario_estimado'],
+        'churn': int(previsao_para_bd),
+    })
+
+    # Commitando a transação
+    session.commit()
 
     metricas = {
         "acuracia": acuracia,
