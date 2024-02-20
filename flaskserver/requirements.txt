@@ -1,0 +1,5 @@
+Flask
+Flask_Cors
+pandas==2.2.0
+scikit_learn
+SQLAlchemy
