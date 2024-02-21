@@ -89,7 +89,7 @@ def calculate_metrics(tree_model, x_test, y_test, x_val, y_val):
 
     return accuracy, precision, recall
 
-def insert_data_to_sql(session, data_frame, one_hot_encoder, tree_model):
+def predict_and_insert_data_to_sql(session, data_frame, one_hot_encoder, tree_model):
     # Realiza a predição do cliente cadastrado
     transformed_data = one_hot_encoder.transform(data_frame)
     prediction = tree_model.predict(transformed_data)
@@ -158,7 +158,7 @@ def predict():
             export_models(one_hot_encoder, tree_model)
 
         # Realiza a predição do cliente cadastrado e insere na tabela do banco de dados
-        prediction = insert_data_to_sql(session, data_frame, one_hot_encoder, tree_model)
+        prediction = predict_and_insert_data_to_sql(session, data_frame, one_hot_encoder, tree_model)
 
         # Calcula métricas e gera a resposta
         metrics = generate_metrics_and_prediction(tree_model, x_test, y_test, x_val, y_val, prediction)
