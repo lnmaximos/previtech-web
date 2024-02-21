@@ -28,6 +28,7 @@ def load_data_from_db():
 
     # Remove a coluna 'id_cliente', que não é necessária para o modelo
     data = data.drop('id_cliente', axis=1)
+    
     return data
 
 def preprocess_data(data):
@@ -55,6 +56,7 @@ def train_model(x_train, y_train):
     # Treinamento do modelo DecisionTreeClassifier
     tree_model = DecisionTreeClassifier(max_depth=8, random_state=5)
     tree_model.fit(x_train, y_train)
+    
     return tree_model
 
 def export_models(one_hot_encoder, tree_model):
