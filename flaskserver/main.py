@@ -94,7 +94,7 @@ def insert_data_to_sql(session, data_frame, one_hot_encoder, tree_model):
 
     # Obtém os dados originais do cliente
     original_data = data_frame.copy()
-    new_customer_data = original_data.to_dict(orient='records')[0]
+    new_client_data = original_data.to_dict(orient='records')[0]
     prediction_for_db = prediction[0] if isinstance(prediction, list) else prediction
 
     # Insere na tabela novos_clientes do banco de dados
@@ -104,16 +104,16 @@ def insert_data_to_sql(session, data_frame, one_hot_encoder, tree_model):
         VALUES (:score_credito, :pais, :sexo_biologico, :idade, :anos_de_cliente, :saldo,
                 :servicos_adquiridos, :tem_cartao_credito, :membro_ativo, :salario_estimado, :churn)
     """), {
-        'score_credito': new_customer_data['score_credito'],
-        'pais': new_customer_data['pais'],
-        'sexo_biologico': new_customer_data['sexo_biologico'],
-        'idade': new_customer_data['idade'],
-        'anos_de_cliente': new_customer_data['anos_de_cliente'],
-        'saldo': new_customer_data['saldo'],
-        'servicos_adquiridos': new_customer_data['servicos_adquiridos'],
-        'tem_cartao_credito': new_customer_data['tem_cartao_credito'],
-        'membro_ativo': new_customer_data['membro_ativo'],
-        'salario_estimado': new_customer_data['salario_estimado'],
+        'score_credito': new_client_data['score_credito'],
+        'pais': new_client_data['pais'],
+        'sexo_biologico': new_client_data['sexo_biologico'],
+        'idade': new_client_data['idade'],
+        'anos_de_cliente': new_client_data['anos_de_cliente'],
+        'saldo': new_client_data['saldo'],
+        'servicos_adquiridos': new_client_data['servicos_adquiridos'],
+        'tem_cartao_credito': new_client_data['tem_cartao_credito'],
+        'membro_ativo': new_client_data['membro_ativo'],
+        'salario_estimado': new_client_data['salario_estimado'],
         'churn': int(prediction_for_db[0]),
     })
 
