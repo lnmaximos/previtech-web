@@ -120,7 +120,8 @@ html {
     transition: 0.5s;
 }
 
-.form, .results {
+.form,
+.results {
     width: 60rem;
     height: 100%;
     position: absolute;
@@ -131,7 +132,7 @@ html {
     padding: 10rem 0;
 }
 
-.form { 
+.form {
     left: 0;
     justify-content: space-around;
     transition: left 1.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.6s, visibility 0.6s;
@@ -179,7 +180,8 @@ html {
     margin-bottom: 1rem;
 }
 
-.fa-arrow-left, .fa-arrow-right {
+.fa-arrow-left,
+.fa-arrow-right {
     position: absolute;
     top: 7%;
     cursor: pointer;
@@ -211,13 +213,122 @@ html {
     position: relative;
 }
 
-.input-group input {
+.input-group span {
+    color: #656565;
+    font-size: 1.33rem;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.input-group input,
+.categorical {
     width: 24rem;
     height: 5rem;
     padding: 1rem 1rem 1rem 3rem;
     background-color: #ddd;
     border: none;
     border-radius: 0.5rem;
+}
+
+.categorical {
+    display: flex;
+    align-items: center;
+}
+
+.categorical .info {
+    opacity: 0.7 !important;
+}
+
+input[type="checkbox"] {
+    position: absolute;
+    left: 18.6rem;
+    width: 4rem;
+    height: 2rem;
+    -webkit-appearance: none;
+    background: #c6c6c6;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+    background: #030514;
+    /* #0DFF92 */
+}
+
+input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: #fff;
+    top: 0;
+    left: 0;
+    transform: scale(1.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: 0.5s;
+}
+
+input[type="checkbox"]:checked::before {
+    left: 2rem;
+}
+
+.dropdown {
+    transition: background 0.3s;
+}
+
+.dropdown:hover {
+    background: #cccccc;
+    cursor: pointer;
+}
+
+.menu {
+    list-style: none;
+    background: #8a8a8a;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+    padding: 0.5rem 2rem;
+    font-size: 1.33rem;
+    color: rgb(224, 224, 224);
+    border-radius: 0.5rem;
+    width: 24rem;
+    position: absolute;
+    top: 5.3rem;
+    right: 0;
+    z-index: 40;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    display: none;
+    opacity: 0;
+    user-select: none;
+}
+
+.menu li {
+    margin: 0.2rem -1.5rem;
+    border-radius: 0.5rem;
+    padding: 0.7rem;
+    font-weight: 500;
+}
+
+.menu li:hover {
+    background: #707070;
+    transition: 0.1s;
+}
+
+.menu-open {
+    display: block;
+    opacity: 1;
+}
+
+.caret-rotate {
+    transform: translateY(-35%) rotate(180deg) !important;
+}
+
+.selected {
+    color: black !important;
 }
 
 .input-group i {
