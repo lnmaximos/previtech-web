@@ -7,34 +7,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>PreviTech</title>
 
-    <link rel="stylesheet" href="css/style.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"/>
     <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/conthrax"/>
+    <link rel="stylesheet" href="css/style.css"/>
     <link rel="icon" type="image/x-icon" href="images/logo.ico">
 </head>
 
 <body>
     <div class="container">
-        <div class="form-wrapper">
+        <div class="left-container">
             <div class="banner">
                 <h1>PreviTech</h1>
-                <p><strong>Integrantes:</strong></p>
-                <p>Dyogo Floriani</p>
-                <p>João Guilherme Ropke</p>
-                <p>León Máximos</p>
-                <p>Marcelo Calsing</p>
-                <p>Sirlon Brehm Jr.</p>
-                <p>Yean Jy Chen</p>
+                <span><strong>Integrantes:</strong></span>
+                <span>Dyogo Floriani</span>
+                <span>João Guilherme Ropke</span>
+                <span>León Máximos</span>
+                <span>Marcelo Calsing</span>
+                <span>Sirlon Brehm Jr.</span>
+                <span>Yean Jy Chen</span>
             </div>
-            <div class="blue-bg">
-                <div class="logo">
-                    <img src="images/logo.png" alt="PreviTech Logo">
-                    <p class="logo-name">PreviTech</p>
-                    <p class="logo-ml">MACHINE LEARNING</p>
-                </div>
-                <button type="button" class="slideBtn">Realizar previsão</button>
+        </div>
+        <div class="blue-bg">
+            <div class="logo">
+                <img src="images/logo.png" alt="PreviTech Logo">
+                <span class="logo-name">PreviTech</span>
+                <span class="logo-ml">MACHINE LEARNING</span>
             </div>
+            <button type="button" class="slideBtn">Realizar previsão</button>
+        </div>
+        <div class="right-container">
             <form class="form">
                 <i class="fa-solid fa-arrow-right hide" onclick="arrow()"></i>
                 <h1>Formulário</h1>
@@ -42,13 +44,15 @@
                 <ul>
                     <li>
                         <div class="input-row">
-                            <div class="input-group">
-                                <i class="fas fa-user"></i>
-                                <input type="text" placeholder="Idade" name="idade"/>
-                                <i class="fa-regular fa-circle-question info"></i>
-                                <div class="infobox">
-                                    <p>Requisito: 16-120.</p>
-                                </div>
+                            <div class="input-group categorical dropdown" id="pais-border">
+                                <i class="fas fa-location-dot"></i>
+                                <span id="pais">País</span>
+                                <i class="fa-solid fa-caret-down info"></i>
+                                <ul class="menu">
+                                    <li>Espanha</li>
+                                    <li>França</li>
+                                    <li>Inglaterra</li>
+                                </ul>
                             </div>
                             <div class="input-group categorical dropdown" id="sexo-border">
                                 <i class="fas fa-mars"></i>
@@ -60,17 +64,15 @@
                                 </ul>
                             </div>
                         </div>
-                        
+
                         <div class="input-row">
-                            <div class="input-group categorical dropdown" id="pais-border">
-                                <i class="fas fa-location-dot"></i>
-                                <span id="pais">País</span>
-                                <i class="fa-solid fa-caret-down info"></i>
-                                <ul class="menu">
-                                    <li>Espanha</li>
-                                    <li>França</li>
-                                    <li>Inglaterra</li>
-                                </ul>
+                            <div class="input-group">
+                                <i class="fas fa-user"></i>
+                                <input type="text" placeholder="Idade" name="idade"/>
+                                <i class="fa-regular fa-circle-question info"></i>
+                                <div class="infobox">
+                                    <p>Requisito: 16-120.</p>
+                                </div>
                             </div>
                             <div class="input-group">
                                 <i class="fa-solid fa-file-invoice-dollar"></i>
@@ -136,7 +138,7 @@
                 </ul>
                 <div class="containerBtn">
                     <button type="submit">Confirmar</button>
-                    <button type="reset" class="esvaziarBtn">Limpar campos</button>
+                    <button type="reset" class="clearBtn">Limpar campos</button>
                 </div>
             </form>
             <div class="results hide">
