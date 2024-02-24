@@ -213,7 +213,6 @@ html {
 
 .input-group span {
     color: #656565;
-    font-size: 1.33rem;
     white-space: nowrap;
     user-select: none;
 }
@@ -226,6 +225,7 @@ html {
     background-color: #ddd;
     border: none;
     border-radius: 0.5rem;
+    font-size: 1.33rem;
 }
 
 .categorical {
