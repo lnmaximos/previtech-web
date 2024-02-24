@@ -433,11 +433,6 @@ input[type="checkbox"]:checked::before {
     .right-container {
         width: 100%;
     }
-
-    .container.change .form,
-    .container.change .results {
-        left: 50%;
-    }
 }
 
 @media (max-width: 600px) {
