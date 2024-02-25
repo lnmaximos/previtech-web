@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    font-family: 'Poppins', sans serif;
+}
+
+body {
+    background: linear-gradient(to right, #030514, #070a28, #171e40);
+    overflow: hidden;
+}
+
+.box-login,
+.box-register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    transition: 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.box-register {
+    bottom: -40rem;
+}
+
+body.change .box-register {
+    bottom: 0;
+}
+
+body.change .box-login {
+    bottom: 40rem;
+}
+
+.slideLogin,
+.homePage {
+    cursor: pointer;
+}
+
+.container {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px 0 15px;
+}
+
+.container span {
+    color: white;
+    margin: auto;
+}
+
+header {
+    color: #fff;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-field .input {
+    height: 45px;
+    width: 87%;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    color: #fff;
+    padding: 0 0 0 42px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+i {
+    position: relative;
+    top: -31px;
+    left: 17px;
+    width: 0;
+    color: #fff;
+}
+
+::-webkit-input-placeholder {
+    color: #fff;
+}
+
+.submit {
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    height: 45px;
+    outline: none;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: .3s;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: small;
+    color: #fff;
+    margin-top: 10px;
+}
+
+@media (max-width: 390px) {
+    .container {
+        width: 300px;
+    }
+}

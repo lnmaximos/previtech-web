@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>PreviTech</title>
+
+    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
+    <link rel="stylesheet" href="css/auth.css"/>
+    <link rel="icon" type="image/x-icon" href="images/logo.ico">
+</head>
+
+<body>
+    <div class="box-login">
+        <div class="container">
+            <span id="messageLogin"></span>
+            <header>Entrar</header>
+
+            <div class="input-field">
+                <input type="text" class="input" placeholder="Usuário" required>
+                <i class="bx bx-user"></i>
+            </div>
+
+            <div class="input-field">
+                <input type="password" class="input" placeholder="Senha" required>
+                <i class="bx bx-lock-alt"></i>
+            </div>
+
+            <div class="input-field">
+                <input type="submit" class="submit" value="Confirmar">
+            </div>
+
+            <div class="bottom">
+                <!-- <div>
+                    <input type="checkbox" id="check">
+                    <label for="check">Lembrar de mim</label>
+                </div> -->
+                <label class="homePage">Voltar à página inicial</label>
+                <label class="slideLogin">Criar uma conta</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="box-register">
+        <div class="container">
+            <span id="messageRegister"></span>
+            <header>Registrar</header>
+
+            <div class="input-field">
+                <input type="text" class="input" placeholder="Usuário" required>
+                <i class="bx bx-user"></i>
+            </div>
+
+            <div class="input-field">
+                <input type="password" class="input" placeholder="Senha" required>
+                <i class="bx bx-lock-alt"></i>
+            </div>
+
+            <div class="input-field">
+                <input type="submit" class="submit" value="Confirmar">
+            </div>
+
+            <div class="bottom">
+                <!-- <div>
+                    <input type="checkbox" id="check">
+                    <label for="check">Lembrar de mim</label>
+                </div> -->
+                <label class="homePage">Voltar à página inicial</label>
+                <label class="slideLogin">Já tem uma conta? Entrar</label>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (localStorage.getItem('authToken')) {
+                window.open("/", "_self");
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -2,15 +2,15 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PreviTech</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"/>
-    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/conthrax"/>
-    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/conthrax" />
+    <link rel="stylesheet" href="css/main.css" />
     <link rel="icon" type="image/x-icon" href="images/logo.ico">
 </head>
 
@@ -35,10 +35,11 @@
                 <span class="logo-ml">MACHINE LEARNING</span>
             </div>
             <button type="button" class="slideBtn">Realizar previsão</button>
+            <span class="userInfo">Entrar</span>
         </div>
         <div class="right-container">
-            <form class="form">
-                <i class="fa-solid fa-arrow-right hide" onclick="arrow()"></i>
+            <form class="form hide">
+                <i class="fa-solid fa-arrow-right hide" id="rightArrowForm" onclick="arrow()"></i>
                 <h1>Formulário</h1>
                 <p>insira os dados do cliente</p>
                 <ul>
@@ -68,7 +69,7 @@
                         <div class="input-row">
                             <div class="input-group">
                                 <i class="fas fa-user"></i>
-                                <input type="text" placeholder="Idade" name="idade"/>
+                                <input type="text" placeholder="Idade" name="idade" />
                                 <i class="fa-regular fa-circle-question info"></i>
                                 <div class="infobox">
                                     <p>Requisito: 16-120.</p>
@@ -76,7 +77,7 @@
                             </div>
                             <div class="input-group">
                                 <i class="fa-solid fa-file-invoice-dollar"></i>
-                                <input type="text" placeholder="Score" name="score_credito"/>
+                                <input type="text" placeholder="Score" name="score_credito" />
                                 <i class="fa-regular fa-circle-question info"></i>
                                 <div class="infobox">
                                     <p>Requisito: 0-1000.</p>
@@ -87,7 +88,7 @@
                         <div class="input-row">
                             <div class="input-group">
                                 <i class="fa-solid fa-calendar-days"></i>
-                                <input type="text" placeholder="Anos de cliente" name="anos_de_cliente"/>
+                                <input type="text" placeholder="Anos de cliente" name="anos_de_cliente" />
                                 <i class="fa-regular fa-circle-question info"></i>
                                 <div class="infobox">
                                     <p>Requisito: 0-100.</p>
@@ -95,7 +96,7 @@
                             </div>
                             <div class="input-group">
                                 <i class="fa-solid fa-list"></i>
-                                <input type="text" placeholder="Serviços adquiridos" name="servicos_adquiridos"/>
+                                <input type="text" placeholder="Serviços adquiridos" name="servicos_adquiridos" />
                                 <i class="fa-regular fa-circle-question info"></i>
                                 <div class="infobox">
                                     <p>Requisito: 0-10.</p>
@@ -106,7 +107,7 @@
                         <div class="input-row">
                             <div class="input-group">
                                 <i class="fa-solid fa-dollar-sign"></i>
-                                <input type="text" placeholder="Salário estimado" name="salario_estimado"/>
+                                <input type="text" placeholder="Salário estimado" name="salario_estimado" />
                                 <i class="fa-regular fa-circle-question info"></i>
                                 <div class="infobox">
                                     <p>Requisito: número racional positivo.</p>
@@ -114,7 +115,7 @@
                             </div>
                             <div class="input-group">
                                 <i class="fa-solid fa-wallet"></i>
-                                <input type="text" placeholder="Saldo" name="saldo"/>
+                                <input type="text" placeholder="Saldo" name="saldo" />
                                 <i class="fa-regular fa-circle-question info"></i>
                                 <div class="infobox">
                                     <p>Requisito: número racional.</p>
@@ -143,16 +144,58 @@
             </form>
             <div class="results hide">
                 <i class="fa-solid fa-arrow-left" onclick="arrow()"></i>
+                <i class="fa-solid fa-arrow-right" id="rightArrowResults" onclick="arrowHistory()"></i>
                 <h1>Resultado</h1>
                 <p id="acuracia"></p>
                 <p id="precisao"></p>
                 <p id="recall"></p>
                 <p id="predicao"></p>
             </div>
+            <div class="history">
+                <i class="fa-solid fa-arrow-left" onclick="arrowHistory()"></i>
+                <h1>Histórico</h1>
+                <p>clientes que você já cadastrou</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Score de Crédito</th>
+                            <th>País</th>
+                            <th>Sexo Biológico</th>
+                            <th>Idade</th>
+                            <th>Anos de Cliente</th>
+                            <th>Saldo</th>
+                            <th>Serviços Adquiridos</th>
+                            <th>Tem Cartão de Crédito</th>
+                            <th>Membro Ativo</th>
+                            <th>Salário Estimado</th>
+                            <th>Churn</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
         </div>
     </div>
 
-    <script src="js/script.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (localStorage.getItem('authToken')) {
+                document.querySelector('.userInfo').textContent = 'Sair';
+                updateClientHistoryTable();
+            }
+
+            document.querySelector('.userInfo').addEventListener('click', function () {
+                if (localStorage.getItem('authToken')) {
+                    localStorage.removeItem('authToken');
+                    location.reload();
+                } else {
+                    window.open("auth.html", "_self");
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

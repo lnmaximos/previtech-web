@@ -1,12 +1,16 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from sqlalchemy import create_engine, text
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine, text, Column, String, Integer
+from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy.sql import exists
 from sklearn.compose import make_column_transformer
 from sklearn.preprocessing import OneHotEncoder, LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import precision_score, recall_score
+from werkzeug.security import generate_password_hash, check_password_hash
+from contextlib import contextmanager
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, verify_jwt_in_request
 import pandas as pd
 import pickle
 import os
@@ -15,8 +19,12 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-# Configuração do banco de dados SQLite
-db_path = "sqlite:///previtech.db"
+# Configuração do banco de dados PostgreSQL
+db_user = os.environ.get("DB_USER")
+db_password = os.environ.get("DB_PASSWORD")
+db_host = os.environ.get("DB_HOST")
+db_name = os.environ.get("DB_NAME")
+db_path = f"postgresql+psycopg2://{db_user}:{db_password}@{db_host}/{db_name}"
 engine = create_engine(db_path, echo=False)
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -89,38 +97,38 @@ def calculate_metrics(tree_model, x_test, y_test, x_val, y_val):
 
     return accuracy, precision, recall
 
-def predict_and_insert_data_to_sql(session, data_frame, one_hot_encoder, tree_model):
+def predict_and_insert_data_to_sql(session, data_frame, one_hot_encoder, tree_model, token_present):
     # Realiza a predição do cliente cadastrado
     transformed_data = one_hot_encoder.transform(data_frame)
     prediction = tree_model.predict(transformed_data)
 
     # Obtém os dados originais do cliente
     original_data = data_frame.copy()
-    new_client_data = original_data.to_dict(orient='records')[0]
-    prediction_for_db = prediction[0] if isinstance(prediction, list) else prediction
 
-    # Insere na tabela novos_clientes do banco de dados
-    session.execute(text("""
-        INSERT INTO novos_clientes (score_credito, pais, sexo_biologico, idade, anos_de_cliente, saldo,
-                                    servicos_adquiridos, tem_cartao_credito, membro_ativo, salario_estimado, churn)
-        VALUES (:score_credito, :pais, :sexo_biologico, :idade, :anos_de_cliente, :saldo,
-                :servicos_adquiridos, :tem_cartao_credito, :membro_ativo, :salario_estimado, :churn)
-    """), {
-        'score_credito': new_client_data['score_credito'],
-        'pais': new_client_data['pais'],
-        'sexo_biologico': new_client_data['sexo_biologico'],
-        'idade': new_client_data['idade'],
-        'anos_de_cliente': new_client_data['anos_de_cliente'],
-        'saldo': new_client_data['saldo'],
-        'servicos_adquiridos': new_client_data['servicos_adquiridos'],
-        'tem_cartao_credito': new_client_data['tem_cartao_credito'],
-        'membro_ativo': new_client_data['membro_ativo'],
-        'salario_estimado': new_client_data['salario_estimado'],
-        'churn': int(prediction_for_db[0]),
-    })
+    # Adiciona a coluna 'churn' de volta ao DataFrame original
+    original_data['churn'] = prediction
 
-    # Commita a transação
-    session.commit()
+    # Ajusta o campo churn conforme necessário
+    original_data['churn'] = original_data['churn'].astype(int)
+
+    if token_present:
+        # Obtém o ID do usuário autenticado
+        id_usuario = get_jwt_identity()
+
+        session.execute(
+            text("""
+                INSERT INTO novos_clientes (score_credito, pais, sexo_biologico, idade, anos_de_cliente, saldo,
+                                            servicos_adquiridos, tem_cartao_credito, membro_ativo, salario_estimado, churn, id_usuario)
+                VALUES (:score_credito, :pais, :sexo_biologico, :idade, :anos_de_cliente, :saldo,
+                        :servicos_adquiridos, :tem_cartao_credito, :membro_ativo, :salario_estimado, :churn, :id_usuario)
+            """),
+            {**original_data.iloc[0].to_dict(), 'id_usuario': id_usuario}
+        )
+
+        # Commita a transação
+        session.commit()
+    else:
+        pass
 
     return prediction
 
@@ -141,6 +149,44 @@ def generate_metrics_and_prediction(tree_model, x_test, y_test, x_val, y_val, pr
 
     return metrics
 
+@app.route("/get_user_clients", methods=["GET"])
+@jwt_required()
+def get_user_clients():
+    try:
+        # Obtém o id_usuario do token JWT atual
+        id_usuario = get_jwt_identity()
+
+        # Executa a consulta SQL para obter os novos clientes do usuário logado
+        query = text("""
+            SELECT * FROM novos_clientes 
+            WHERE id_usuario = :id_usuario
+        """)
+        result = session.execute(query, {"id_usuario": id_usuario}).fetchall()
+
+        # Utiliza o Pandas para converter os resultados para um DataFrame
+        df = pd.DataFrame(result)
+
+        # Converte o DataFrame para JSON
+        user_clients_json = df.to_json(orient="records")
+
+        # Retorna os dados como JSON
+        return user_clients_json, 200
+
+    except Exception as e:
+        # Trata exceções e retorna um erro 500 em caso de falha interna
+        error_message = f"Internal server error: {str(e)}"
+        return jsonify({"error": error_message}), 500
+
+def predict_middleware():
+    # Verifica se o token está presente na requisição
+    token_present = "Authorization" in request.headers
+
+    if token_present:
+        # Se o token está presente, verifica-o
+        verify_jwt_in_request()
+
+    return token_present
+
 @app.route("/predict", methods=["POST"])
 def predict():
     try:
@@ -157,8 +203,11 @@ def predict():
             tree_model = train_model(x_train, y_train)
             export_models(one_hot_encoder, tree_model)
 
+        # Executa a função de middleware para verificar se o token está presente
+        token_present = predict_middleware()
+
         # Realiza a predição do cliente cadastrado e insere na tabela do banco de dados
-        prediction = predict_and_insert_data_to_sql(session, data_frame, one_hot_encoder, tree_model)
+        prediction = predict_and_insert_data_to_sql(session, data_frame, one_hot_encoder, tree_model, token_present)
 
         # Calcula métricas e gera a resposta
         metrics = generate_metrics_and_prediction(tree_model, x_test, y_test, x_val, y_val, prediction)
@@ -169,6 +218,84 @@ def predict():
         # Trata exceções e retorna um erro 500 em caso de falha interna
         error_message = f"Internal server error: {str(e)}"
         return jsonify({"error": error_message}), 500
+    
+Base = declarative_base()
+    
+class User(Base):
+    __tablename__ = 'usuario'
+    id_usuario = Column(Integer, primary_key=True, autoincrement=True)
+    username = Column(String(255), unique=True, nullable=False)
+    password = Column(String(255), nullable=False)
+
+@contextmanager
+def get_session():
+    session = Session()
+    try:
+        yield session
+        session.commit()
+    except Exception as e:
+        session.rollback()
+        raise
+    finally:
+        session.close()
+
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+jwt = JWTManager(app)
+
+def register_user(username, password):
+    with get_session() as session:
+        user_exists = session.query(exists().where(User.username == username)).scalar()
+        if user_exists:
+            raise ValueError("Este usuário já existe")
+
+        hashed_password = generate_password_hash(password)
+        new_user = User(username=username, password=hashed_password)
+        session.add(new_user)
+
+        session.commit()
+
+        user_id = new_user.id_usuario
+
+        access_token = create_access_token(identity=user_id)
+        return access_token
+
+def login_user(username, password):
+    with get_session() as session:
+        user = session.query(User).filter_by(username=username).first()
+        if not user:
+            raise ValueError("Usuário não encontrado")
+
+        if not check_password_hash(user.password, password):
+            raise ValueError("Senha incorreta")
+
+        access_token = create_access_token(identity=user.id_usuario)
+        return access_token
+
+@app.route("/register", methods=["POST"])
+def register():
+    try:
+        data = request.get_json()
+        username = data.get("username")
+        password = data.get("password")
+        access_token = register_user(username, password)
+        return jsonify({"access_token": access_token, "message": "Usuário registrado com sucesso"}), 201
+    except ValueError as ve:
+        return jsonify({"error": str(ve)}), 400
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route("/login", methods=["POST"])
+def login():
+    try:
+        data = request.get_json()
+        username = data.get("username")
+        password = data.get("password")
+        access_token = login_user(username, password)
+        return jsonify({"access_token": access_token, "message": "Login bem-sucedido"}), 200
+    except ValueError as ve:
+        return jsonify({"error": str(ve)}), 401
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     # Executa a aplicação Flask em modo de depuração

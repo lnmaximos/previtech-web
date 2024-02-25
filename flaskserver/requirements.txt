@@ -1,5 +1,8 @@
 Flask
-Flask_Cors
-pandas==2.2.0
-scikit_learn
+Flask-CORS
+Flask-JWT-Extended
 SQLAlchemy
+scikit-learn
+pandas==2.2.0
+psycopg2-binary
+Werkzeug
