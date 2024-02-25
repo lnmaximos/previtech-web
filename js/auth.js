@@ -6,7 +6,7 @@ document.querySelectorAll(".slideLogin").forEach((element) => {
 
 document.querySelectorAll(".homePage").forEach((element) => {
     element.addEventListener("click", () => {
-        window.open("/", "_self");
+        window.open("https://lnmaximos.github.io/previtech-web/", "_self");
     });
 });
 
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById("messageLogin").innerHTML = data.error;
                 } else {
                     localStorage.setItem('authToken', data.access_token);
-                    window.open("/", "_self");
+                    window.open("https://lnmaximos.github.io/previtech-web/", "_self");
                 }
                 console.log(data);
             })
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById("messageRegister").innerHTML = data.error;
                 } else {
                     localStorage.setItem('authToken', data.access_token);
-                    window.open("/", "_self");
+                    window.open("https://lnmaximos.github.io/previtech-web/", "_self");
                 }
                 console.log(data);
             })
