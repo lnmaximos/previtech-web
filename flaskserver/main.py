@@ -299,4 +299,4 @@ def login():
 
 if __name__ == "__main__":
     # Executa a aplicação Flask em modo de depuração
-    app.run(debug=True)
+    app.run(debug=True, port=8080)
