@@ -409,6 +409,7 @@ input[type="checkbox"]:checked::before {
     animation: slide 0.5s;
     pointer-events: none;
     display: none;
+    text-align: center;
 }
 
 .infobox p {
