@@ -298,7 +298,3 @@ def login():
         return jsonify({"error": str(ve)}), 401
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-if __name__ == "__main__":
-    # Executa a aplicação Flask em modo de depuração
-    app.run(debug=True)

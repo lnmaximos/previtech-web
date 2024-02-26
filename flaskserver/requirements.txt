@@ -1,6 +1,7 @@
 Flask
 Flask-CORS
 Flask-JWT-Extended
+gunicorn
 SQLAlchemy
 scikit-learn
 pandas==2.2.0
