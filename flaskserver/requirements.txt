@@ -1,9 +1,0 @@
-Flask
-Flask-CORS
-Flask-JWT-Extended
-gunicorn
-SQLAlchemy
-scikit-learn
-pandas==2.2.0
-psycopg2-binary
-Werkzeug
