@@ -69,7 +69,7 @@ function validateInputs() {
 }
 
 function updateClientHistoryTable() {
-  fetch("http://localhost:5000/get_user_clients", {
+  fetch("https://previtech-a544a1393ecd.herokuapp.com/get_user_clients", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -134,7 +134,7 @@ form.addEventListener("submit", function (event) {
     "salario_estimado": [this.elements["salario_estimado"].value],
   };
 
-  fetch("http://localhost:5000/predict", {
+  fetch("https://previtech-a544a1393ecd.herokuapp.com/predict", {
     method: "POST",
     body: JSON.stringify(formData),
     headers: headers

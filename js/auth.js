@@ -14,7 +14,7 @@ document.querySelector(".slideLogin").addEventListener("click", () => {
 
 document.querySelectorAll(".homePage").forEach((element) => {
     element.addEventListener("click", () => {
-        window.open("/", "_self");
+        window.open("https://lnmaximos.github.io/previtech-web/", "_self");
     });
 });
 
@@ -57,14 +57,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const loginData = { username: username, password: password };
 
-        makeRequest('http://localhost:5000/login', 'POST', loginData)
+        makeRequest('https://previtech-a544a1393ecd.herokuapp.com/login', 'POST', loginData)
             .then(data => {
                 if (data.error) {
                     document.getElementById("messageLogin").style.color = "red";
                     document.getElementById("messageLogin").innerHTML = data.error;
                 } else {
                     localStorage.setItem('authToken', data.access_token);
-                    window.open("/", "_self");
+                    window.open("https://lnmaximos.github.io/previtech-web/", "_self");
                 }
                 console.log(data);
             })
@@ -79,14 +79,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const registerData = { username: username, password: password };
 
-        makeRequest('http://localhost:5000/register', 'POST', registerData)
+        makeRequest('https://previtech-a544a1393ecd.herokuapp.com/register', 'POST', registerData)
             .then(data => {
                 if (data.error) {
                     document.getElementById("messageRegister").style.color = "red";
                     document.getElementById("messageRegister").innerHTML = data.error;
                 } else {
                     localStorage.setItem('authToken', data.access_token);
-                    window.open("/", "_self");
+                    window.open("https://lnmaximos.github.io/previtech-web/", "_self");
                 }
                 console.log(data);
             })
