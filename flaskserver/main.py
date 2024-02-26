@@ -160,6 +160,8 @@ def get_user_clients():
         query = text("""
             SELECT * FROM novos_clientes 
             WHERE id_usuario = :id_usuario
+            ORDER BY id_cliente DESC
+            LIMIT 10
         """)
         result = session.execute(query, {"id_usuario": id_usuario}).fetchall()
 

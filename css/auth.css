@@ -19,7 +19,9 @@ body {
     left: 50%;
     transform: translateX(-50%);
     bottom: 0;
-    transition: 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+    opacity: 1;
+    visibility: visible;
+    transition: bottom 1.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.15s, visibility 0.15s;
 }
 
 .box-register {
@@ -34,6 +36,12 @@ body.change .box-login {
     bottom: 40rem;
 }
 
+.hide {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.slideRegister,
 .slideLogin,
 .homePage {
     cursor: pointer;

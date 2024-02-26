@@ -1,3 +1,17 @@
+let login = false;
+let hasPredicted = false;
+
+function checkLogin() {
+  if (localStorage.getItem('authToken')) {
+    document.querySelector('.userInfo').textContent = 'Sair';
+    login = true;
+    updateClientHistoryTable()
+    document.getElementById("rightArrowForm").classList.remove("hide");
+  }
+}
+
+checkLogin();
+
 const form = document.querySelector(".form");
 
 function validateInputs() {
@@ -105,7 +119,6 @@ form.addEventListener("submit", function (event) {
 
   if (authToken) {
     headers["Authorization"] = `Bearer ${authToken}`;
-    updateClientHistoryTable()
   }
 
   const formData = {
@@ -142,9 +155,22 @@ form.addEventListener("submit", function (event) {
 
       form.classList.toggle("hide");
       document.querySelector(".results").classList.toggle("hide");
+      hasPredicted = true;
+      if (localStorage.getItem('authToken')) {
+        document.getElementById("rightArrowResults").classList.remove("hide");
+      }
     })
     .catch(error => {
       console.error("Erro ao enviar requisição:", error);
       alert("Erro:", error);
     });
+});
+
+document.querySelector('.userInfo').addEventListener('click', function () {
+  if (localStorage.getItem('authToken')) {
+    localStorage.removeItem('authToken');
+    location.reload();
+  } else {
+    window.open("auth.html", "_self");
+  }
 });

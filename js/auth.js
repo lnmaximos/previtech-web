@@ -1,12 +1,20 @@
-document.querySelectorAll(".slideLogin").forEach((element) => {
-    element.addEventListener("click", () => {
-        document.querySelector("body").classList.toggle("change");
-    });
+document.querySelector(".slideRegister").addEventListener("click", () => {
+    document.querySelector(".box-register").classList.toggle("hide");
+    document.querySelector(".box-login").classList.toggle("hide");
+    document.querySelector("body").classList.toggle("change");
+    document.getElementById("messageLogin").innerHTML = "";
+});
+
+document.querySelector(".slideLogin").addEventListener("click", () => {
+    document.querySelector(".box-login").classList.toggle("hide");
+    document.querySelector(".box-register").classList.toggle("hide");
+    document.querySelector("body").classList.toggle("change");
+    document.getElementById("messageRegister").innerHTML = "";
 });
 
 document.querySelectorAll(".homePage").forEach((element) => {
     element.addEventListener("click", () => {
-        window.open("https://lnmaximos.github.io/previtech-web/", "_self");
+        window.open("/", "_self");
     });
 });
 
@@ -15,6 +23,14 @@ document.querySelectorAll('.box-login input, .box-register input').forEach((inpu
         document.getElementById("messageLogin").innerHTML = "";
         document.getElementById("messageRegister").innerHTML = "";
     });
+});
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        if (document.activeElement.tagName === 'INPUT') {
+            document.getElementById('submitButton').click();
+        }
+    }
 });
 
 async function makeRequest(url, method, body) {
@@ -48,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById("messageLogin").innerHTML = data.error;
                 } else {
                     localStorage.setItem('authToken', data.access_token);
-                    window.open("https://lnmaximos.github.io/previtech-web/", "_self");
+                    window.open("/", "_self");
                 }
                 console.log(data);
             })
@@ -70,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById("messageRegister").innerHTML = data.error;
                 } else {
                     localStorage.setItem('authToken', data.access_token);
-                    window.open("https://lnmaximos.github.io/previtech-web/", "_self");
+                    window.open("/", "_self");
                 }
                 console.log(data);
             })

@@ -1,53 +1,14 @@
 const slideBtn = document.querySelector(".blue-bg button");
 const dropdowns = document.querySelectorAll(".dropdown");
-
 let isSliding = false;
-
-slideBtn.addEventListener("click", () => {
-  document.querySelector(".container").classList.toggle("change");
-  document.querySelector(".blue-bg .logo").classList.toggle("change");
-
-  if (isSliding) {
-    slideBtn.textContent = "Realizar previsão";
-    document.querySelector(".banner").style.transition = "left 0.6s";
-  } else {
-    slideBtn.textContent = "Deslizar";
-    document.querySelector(".banner").style.transition = "left 1s";
-  }
-
-  isSliding = !isSliding;
-});
 
 function addBorder(e) {
   e.style.border = "1px solid rgba(255, 0, 0, 0.4)";
 }
 
-function arrow() {
-  document.querySelector("form").classList.toggle("hide");
-  document.querySelector(".results").classList.toggle("hide");
-  document.getElementById("rightArrowForm").classList.remove("hide");
+function removeBorder(e) {
+  e.target.style.border = '';
 }
-
-function arrowHistory() {
-  if (localStorage.getItem('authToken')) {
-    document.querySelector(".results").classList.toggle("hide");
-    document.querySelector(".history").classList.toggle("hide");
-  } else {
-    document.querySelector("rightArrowResults").classList.add("hide");
-  }
-}
-
-document.querySelector(".clearBtn").addEventListener("click", () => {
-  document.getElementById("rightArrowForm").classList.add("hide");
-  document.getElementById("pais").textContent = "País";
-  document.getElementById("sexo_biologico").textContent = "Sexo";
-  document.querySelectorAll(".dropdown span").forEach(span => {
-    span.classList.remove("selected");
-  });
-  form.querySelectorAll('input, .dropdown').forEach(element => {
-    element.style.border = 'none';
-  });
-});
 
 dropdowns.forEach(dropdown => {
   const caret = dropdown.querySelector(".fa-caret-down");
@@ -93,9 +54,69 @@ document.addEventListener('blur', () => {
   });
 });
 
-function removeBorder(e) {
-  e.target.style.border = '';
-}
+slideBtn.addEventListener("click", () => {
+  document.querySelector(".container").classList.toggle("change");
+  document.querySelector(".blue-bg .logo").classList.toggle("change");
+
+  if (isSliding) {
+    slideBtn.textContent = "Realizar previsão";
+    document.querySelector(".banner").style.transition = "left 0.6s";
+  } else {
+    slideBtn.textContent = "Deslizar";
+    document.querySelector(".banner").style.transition = "left 1s";
+  }
+
+  isSliding = !isSliding;
+});
+
+document.getElementById("rightArrowForm").addEventListener("click", () => {
+  if (login && !hasPredicted) {
+    form.classList.toggle("hide");
+    document.querySelector(".history").classList.toggle("hide");
+  } else {
+    document.querySelector("form").classList.toggle("hide");
+    document.querySelector(".results").classList.toggle("hide");
+    document.getElementById("rightArrowForm").classList.remove("hide");
+  }
+});
+
+document.getElementById("rightArrowResults").addEventListener("click", () => {
+  updateClientHistoryTable()
+  document.querySelector(".results").classList.toggle("hide");
+  document.querySelector(".history").classList.toggle("hide");
+});
+
+document.getElementById("leftArrowResults").addEventListener("click", () => {
+  document.querySelector("form").classList.toggle("hide");
+  document.querySelector(".results").classList.toggle("hide");
+  document.getElementById("rightArrowForm").classList.remove("hide");
+});
+
+document.getElementById("leftArrowHistory").addEventListener("click", () => {
+  document.querySelector(".history").classList.toggle("hide");
+  if (!hasPredicted) {
+    form.classList.toggle("hide");
+  } else {
+    document.querySelector(".results").classList.toggle("hide");
+  }
+});
+
+document.querySelector(".clearBtn").addEventListener("click", () => {
+  hasPredicted = false;
+  if (login) {
+    document.getElementById("rightArrowForm").classList.remove("hide");
+  } else {
+    document.getElementById("rightArrowForm").classList.add("hide");
+  }
+  document.getElementById("pais").textContent = "País";
+  document.getElementById("sexo_biologico").textContent = "Sexo";
+  document.querySelectorAll(".dropdown span").forEach(span => {
+    span.classList.remove("selected");
+  });
+  form.querySelectorAll('input, .dropdown').forEach(element => {
+    element.style.border = 'none';
+  });
+});
 
 document.querySelectorAll("input").forEach(input => {
   input.addEventListener('click', removeBorder);

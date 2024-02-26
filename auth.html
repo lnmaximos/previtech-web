@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PreviTech</title>
 
     <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
-    <link rel="stylesheet" href="css/auth.css"/>
+    <link rel="stylesheet" href="css/auth.css" />
     <link rel="icon" type="image/x-icon" href="images/logo.ico">
 </head>
 
@@ -38,12 +38,12 @@
                     <label for="check">Lembrar de mim</label>
                 </div> -->
                 <label class="homePage">Voltar à página inicial</label>
-                <label class="slideLogin">Criar uma conta</label>
+                <label class="slideRegister">Criar uma conta</label>
             </div>
         </div>
     </div>
 
-    <div class="box-register">
+    <div class="box-register hide">
         <div class="container">
             <span id="messageRegister"></span>
             <header>Registrar</header>
@@ -75,11 +75,13 @@
 
     <script src="js/auth.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            if (localStorage.getItem('authToken')) {
-                window.open("https://lnmaximos.github.io/previtech-web/", "_self");
+        if (localStorage.getItem('authToken')) {
+            if (confirm("Você já está logado. Deseja sair?")) {
+                localStorage.removeItem('authToken');
+            } else {
+                window.open("/", "_self");
             }
-        });
+        }
     </script>
 </body>
 
