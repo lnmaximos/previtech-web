@@ -15,165 +15,164 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="left-container">
-            <div class="banner">
-                <h1>PreviTech</h1>
-                <span><strong>Integrantes:</strong></span>
-                <span>Dyogo Floriani</span>
-                <span>João Guilherme Ropke</span>
-                <span>León Máximos</span>
-                <span>Marcelo Calsing</span>
-                <span>Sirlon Brehm Jr.</span>
-                <span>Yean Jy Chen</span>
-            </div>
+    <div class="left-container">
+        <div class="banner">
+            <h1>PreviTech</h1>
+            <span><strong>Integrantes:</strong></span>
+            <span>Dyogo Floriani</span>
+            <span>João Guilherme Ropke</span>
+            <span>León Máximos</span>
+            <span>Marcelo Calsing</span>
+            <span>Sirlon Brehm Jr.</span>
+            <span>Yean Jy Chen</span>
         </div>
-        <div class="blue-bg">
-            <div class="logo">
-                <img src="images/logo.png" alt="PreviTech Logo">
-                <span class="logo-name">PreviTech</span>
-                <span class="logo-ml">MACHINE LEARNING</span>
-            </div>
-            <button type="button" class="slideBtn">Realizar previsão</button>
-            <span class="userInfo">Entrar</span>
+    </div>
+    <div class="blue-bg">
+        <div class="logo">
+            <img src="images/logo.png" alt="PreviTech Logo">
+            <span class="logo-name">PreviTech</span>
+            <span class="logo-ml">MACHINE LEARNING</span>
         </div>
-        <div class="right-container">
-            <form class="form">
-                <i class="fa-solid fa-arrow-right hide" id="rightArrowForm"></i>
-                <h1>Formulário</h1>
-                <p>insira os dados do cliente</p>
-                <ul>
-                    <li>
-                        <div class="input-row">
-                            <div class="input-group categorical dropdown" id="pais-border">
-                                <i class="fas fa-location-dot"></i>
-                                <span id="pais">País</span>
-                                <i class="fa-solid fa-caret-down info"></i>
-                                <ul class="menu">
-                                    <li>Alemanha</li>
-                                    <li>Espanha</li>
-                                    <li>França</li>
-                                </ul>
-                            </div>
-                            <div class="input-group categorical dropdown" id="sexo-border">
-                                <i class="fas fa-mars"></i>
-                                <span id="sexo_biologico">Sexo</span>
-                                <i class="fa-solid fa-caret-down info"></i>
-                                <ul class="menu">
-                                    <li>Homem</li>
-                                    <li>Mulher</li>
-                                </ul>
-                            </div>
+        <button type="button" class="slideBtn">Realizar previsão</button>
+        <span class="userInfo">Entrar</span>
+    </div>
+    <div class="right-container">
+        <form class="form">
+            <i class="fa-solid fa-arrow-right hide" id="rightArrowForm"></i>
+            <i class="fa-solid fa-arrow-right" id="leftArrowForm"></i>
+            <h1>Formulário</h1>
+            <p>insira os dados do cliente</p>
+            <ul>
+                <li>
+                    <div class="input-row">
+                        <div class="input-group categorical dropdown" id="pais-border">
+                            <i class="fas fa-location-dot"></i>
+                            <span id="pais">País</span>
+                            <i class="fa-solid fa-caret-down info"></i>
+                            <ul class="menu">
+                                <li>Alemanha</li>
+                                <li>Espanha</li>
+                                <li>França</li>
+                            </ul>
                         </div>
+                        <div class="input-group categorical dropdown" id="sexo-border">
+                            <i class="fas fa-mars"></i>
+                            <span id="sexo_biologico">Sexo</span>
+                            <i class="fa-solid fa-caret-down info"></i>
+                            <ul class="menu">
+                                <li>Homem</li>
+                                <li>Mulher</li>
+                            </ul>
+                        </div>
+                    </div>
 
-                        <div class="input-row">
-                            <div class="input-group">
-                                <i class="fas fa-user"></i>
-                                <input type="text" placeholder="Idade" name="idade" />
-                                <i class="fa-regular fa-circle-question info"></i>
-                                <div class="infobox">
-                                    <p>Requisito: 16-120.</p>
-                                </div>
-                            </div>
-                            <div class="input-group">
-                                <i class="fa-solid fa-file-invoice-dollar"></i>
-                                <input type="text" placeholder="Score" name="score_credito" />
-                                <i class="fa-regular fa-circle-question info"></i>
-                                <div class="infobox">
-                                    <p>Requisito: 0-1000.</p>
-                                </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" placeholder="Idade" name="idade" />
+                            <i class="fa-regular fa-circle-question info"></i>
+                            <div class="infobox">
+                                <p>Requisito: 16-120.</p>
                             </div>
                         </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-file-invoice-dollar"></i>
+                            <input type="text" placeholder="Score" name="score_credito" />
+                            <i class="fa-regular fa-circle-question info"></i>
+                            <div class="infobox">
+                                <p>Requisito: 0-1000.</p>
+                            </div>
+                        </div>
+                    </div>
 
-                        <div class="input-row">
-                            <div class="input-group">
-                                <i class="fa-solid fa-calendar-days"></i>
-                                <input type="text" placeholder="Anos de cliente" name="anos_de_cliente" />
-                                <i class="fa-regular fa-circle-question info"></i>
-                                <div class="infobox">
-                                    <p>Requisito: 0-100.</p>
-                                </div>
-                            </div>
-                            <div class="input-group">
-                                <i class="fa-solid fa-list"></i>
-                                <input type="text" placeholder="Serviços adquiridos" name="servicos_adquiridos" />
-                                <i class="fa-regular fa-circle-question info"></i>
-                                <div class="infobox">
-                                    <p>Requisito: 0-10.</p>
-                                </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <input type="text" placeholder="Anos de cliente" name="anos_de_cliente" />
+                            <i class="fa-regular fa-circle-question info"></i>
+                            <div class="infobox">
+                                <p>Requisito: 0-100.</p>
                             </div>
                         </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-list"></i>
+                            <input type="text" placeholder="Serviços adquiridos" name="servicos_adquiridos" />
+                            <i class="fa-regular fa-circle-question info"></i>
+                            <div class="infobox">
+                                <p>Requisito: 0-10.</p>
+                            </div>
+                        </div>
+                    </div>
 
-                        <div class="input-row">
-                            <div class="input-group">
-                                <i class="fa-solid fa-dollar-sign"></i>
-                                <input type="text" placeholder="Salário estimado" name="salario_estimado" />
-                                <i class="fa-regular fa-circle-question info"></i>
-                                <div class="infobox">
-                                    <p>Requisito: número racional positivo.</p>
-                                </div>
-                            </div>
-                            <div class="input-group">
-                                <i class="fa-solid fa-wallet"></i>
-                                <input type="text" placeholder="Saldo" name="saldo" />
-                                <i class="fa-regular fa-circle-question info"></i>
-                                <div class="infobox">
-                                    <p>Requisito: número racional.</p>
-                                </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <i class="fa-solid fa-dollar-sign"></i>
+                            <input type="text" placeholder="Salário estimado" name="salario_estimado" />
+                            <i class="fa-regular fa-circle-question info"></i>
+                            <div class="infobox">
+                                <p>Requisito: número racional positivo.</p>
                             </div>
                         </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-wallet"></i>
+                            <input type="text" placeholder="Saldo" name="saldo" />
+                            <i class="fa-regular fa-circle-question info"></i>
+                            <div class="infobox">
+                                <p>Requisito: número racional.</p>
+                            </div>
+                        </div>
+                    </div>
 
-                        <div class="input-row">
-                            <div class="input-group categorical">
-                                <i class="fas fa-globe"></i>
-                                <span>Membro ativo?</span>
-                                <input type="checkbox" name="membro_ativo">
-                            </div>
-                            <div class="input-group categorical">
-                                <i class="fa-solid fa-credit-card"></i>
-                                <span>Tem cartão?</span>
-                                <input type="checkbox" name="tem_cartao_credito">
-                            </div>
+                    <div class="input-row">
+                        <div class="input-group categorical">
+                            <i class="fas fa-globe"></i>
+                            <span>Membro ativo?</span>
+                            <input type="checkbox" name="membro_ativo">
                         </div>
-                    </li>
-                </ul>
-                <div class="containerBtn">
-                    <button type="submit">Confirmar</button>
-                    <button type="reset" class="clearBtn">Limpar campos</button>
-                </div>
-            </form>
-            <div class="results hide">
-                <i class="fa-solid fa-arrow-left" id="leftArrowResults"></i>
-                <i class="fa-solid fa-arrow-right hide" id="rightArrowResults"></i>
-                <h1>Resultado</h1>
-                <p id="acuracia"></p>
-                <p id="precisao"></p>
-                <p id="recall"></p>
-                <p id="predicao"></p>
+                        <div class="input-group categorical">
+                            <i class="fa-solid fa-credit-card"></i>
+                            <span>Tem cartão?</span>
+                            <input type="checkbox" name="tem_cartao_credito">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="containerBtn">
+                <button type="submit">Confirmar</button>
+                <button type="reset" class="clearBtn">Limpar campos</button>
             </div>
-            <div class="history hide">
-                <i class="fa-solid fa-arrow-left" id="leftArrowHistory"></i>
-                <h1>Histórico</h1>
-                <p>últimos 10 clientes que você cadastrou</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Score de Crédito</th>
-                            <th>País</th>
-                            <th>Sexo Biológico</th>
-                            <th>Idade</th>
-                            <th>Anos de Cliente</th>
-                            <th>Saldo</th>
-                            <th>Serviços Adquiridos</th>
-                            <th>Tem Cartão de Crédito</th>
-                            <th>Membro Ativo</th>
-                            <th>Salário Estimado</th>
-                            <th>Churn</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>
+        </form>
+        <div class="results hide">
+            <i class="fa-solid fa-arrow-left" id="leftArrowResults"></i>
+            <i class="fa-solid fa-arrow-right hide" id="rightArrowResults"></i>
+            <h1>Resultado</h1>
+            <p id="acuracia"></p>
+            <p id="precisao"></p>
+            <p id="recall"></p>
+            <p id="predicao"></p>
+        </div>
+        <div class="history hide">
+            <i class="fa-solid fa-arrow-left" id="leftArrowHistory"></i>
+            <h1>Histórico</h1>
+            <p>últimos 10 clientes que você cadastrou</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Score de Crédito</th>
+                        <th>País</th>
+                        <th>Sexo Biológico</th>
+                        <th>Idade</th>
+                        <th>Anos de Cliente</th>
+                        <th>Saldo</th>
+                        <th>Serviços Adquiridos</th>
+                        <th>Tem Cartão de Crédito</th>
+                        <th>Membro Ativo</th>
+                        <th>Salário Estimado</th>
+                        <th>Churn</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
     </div>
 

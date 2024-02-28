@@ -55,7 +55,7 @@ document.addEventListener('blur', () => {
 });
 
 slideBtn.addEventListener("click", () => {
-  document.querySelector(".container").classList.toggle("change");
+  document.querySelector("body").classList.toggle("change");
   document.querySelector(".blue-bg .logo").classList.toggle("change");
 
   if (isSliding) {
@@ -66,6 +66,14 @@ slideBtn.addEventListener("click", () => {
     document.querySelector(".banner").style.transition = "left 1s";
   }
 
+  isSliding = !isSliding;
+});
+
+document.getElementById("leftArrowForm").addEventListener("click", () => {
+  document.querySelector("body").classList.toggle("change");
+  document.querySelector(".blue-bg .logo").classList.toggle("change");
+
+  slideBtn.textContent = "Realizar previsão";
   isSliding = !isSliding;
 });
 
