@@ -42,7 +42,7 @@ function validateInputs() {
   }
 
   const anos_de_cliente = form.elements["anos_de_cliente"];
-  if (!anos_de_cliente.value.match(/^\d+$/) || parseInt(anos_de_cliente.value) < 0 || parseInt(anos_de_cliente.value) > 100) {
+  if (!anos_de_cliente.value.match(/^\d+$/) || parseInt(anos_de_cliente.value) < 0 || parseInt(anos_de_cliente.value) > 100 || parseInt(anos_de_cliente.value) > parseInt(idade.value) - 16) {
     addBorder(anos_de_cliente);
     isValid = false;
   }
