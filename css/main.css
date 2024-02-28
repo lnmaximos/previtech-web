@@ -487,6 +487,12 @@ input[type="checkbox"]:checked::before {
     body {
         position: fixed;
     }
+
+    
+    table th,
+    table td {
+        padding: 1rem 0.3rem;
+    }
 }
 
 @media (max-width: 600px) {
