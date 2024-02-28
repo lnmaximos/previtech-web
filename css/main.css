@@ -483,6 +483,10 @@ input[type="checkbox"]:checked::before {
         visibility: visible !important;
         opacity: 1 !important;
     }
+
+    body {
+        height: calc(100vh - 5rem);
+    }
 }
 
 @media (max-width: 600px) {
