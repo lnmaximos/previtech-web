@@ -485,7 +485,7 @@ input[type="checkbox"]:checked::before {
     }
 
     body {
-        height: calc(100vh - 5rem);
+        position: fixed;
     }
 }
 
