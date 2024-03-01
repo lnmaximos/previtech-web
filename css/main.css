@@ -503,6 +503,12 @@ input[type="checkbox"]:checked::before {
 
 @media (max-width: 480px) {
     html {
-        font-size: 42.5%;
+        font-size: 45.5%;
+    }
+}
+
+@media (max-width: 380px) {
+    html {
+        font-size: 36.5%;
     }
 }
