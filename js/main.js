@@ -149,7 +149,7 @@ form.addEventListener("submit", function (event) {
       form.classList.toggle("hide");
       document.querySelector(".results").classList.toggle("hide");
       hasPredicted = true;
-      if (localStorage.getItem('authToken')) {
+      if (authToken) {
         document.getElementById("rightArrowResults").classList.remove("hide");
       }
     })
