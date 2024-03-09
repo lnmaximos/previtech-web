@@ -27,8 +27,8 @@ function validateInputs() {
     isValid = false;
   }
 
-  const pais = document.getElementById("pais").innerText;
-  if (pais === "País") {
+  const geography = document.getElementById("geography").innerText;
+  if (geography === "País") {
     document.getElementById("geography-border").style.border = "1px solid rgba(255, 0, 0, 0.4)";
     isValid = false;
   }
@@ -90,7 +90,7 @@ function populateTable(clientData) {
 
   clientData.forEach(client => {
     const row = document.createElement('tr');
-    const columns = ['credit_score', 'pais', 'gender', 'age', 'tenure', 'balance', 'num_of_products', 'has_credit_card', 'active_member', 'estimated_salary', 'churn'];
+    const columns = ['credit_score', 'geography', 'gender', 'age', 'tenure', 'balance', 'num_of_products', 'has_credit_card', 'active_member', 'estimated_salary', 'churn'];
 
     columns.forEach(column => {
       const cell = document.createElement('td');
@@ -121,7 +121,7 @@ form.addEventListener("submit", function (event) {
 
   const formData = {
     "credit_score": [this.elements["credit_score"].value],
-    "pais": [document.getElementById("pais").innerText],
+    "geography": [document.getElementById("geography").innerText],
     "gender": [document.getElementById("gender").innerText],
     "age": [this.elements["age"].value],
     "tenure": [this.elements["tenure"].value],
