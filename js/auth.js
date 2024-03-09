@@ -25,14 +25,6 @@ document.querySelectorAll('.box-login input, .box-register input').forEach((inpu
     });
 });
 
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') {
-        if (document.activeElement.tagName === 'INPUT') {
-            document.getElementById('submitButton').click();
-        }
-    }
-});
-
 async function makeRequest(url, method, body) {
     try {
         const response = await fetch(url, {

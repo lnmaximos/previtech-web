@@ -45,9 +45,9 @@
             <ul>
                 <li>
                     <div class="input-row">
-                        <div class="input-group categorical dropdown" id="pais-border">
+                        <div class="input-group categorical dropdown" id="geography-border">
                             <i class="fas fa-location-dot"></i>
-                            <span id="pais">País</span>
+                            <span id="geography">País</span>
                             <i class="fa-solid fa-caret-down info"></i>
                             <ul class="menu">
                                 <li>Alemanha</li>
@@ -55,9 +55,9 @@
                                 <li>França</li>
                             </ul>
                         </div>
-                        <div class="input-group categorical dropdown" id="sexo-border">
+                        <div class="input-group categorical dropdown" id="gender-border">
                             <i class="fas fa-mars"></i>
-                            <span id="sexo_biologico">Sexo</span>
+                            <span id="gender">Sexo</span>
                             <i class="fa-solid fa-caret-down info"></i>
                             <ul class="menu">
                                 <li>Homem</li>
@@ -69,7 +69,7 @@
                     <div class="input-row">
                         <div class="input-group">
                             <i class="fas fa-user"></i>
-                            <input type="text" placeholder="Idade" name="idade" />
+                            <input type="text" placeholder="Idade" name="age" />
                             <i class="fa-regular fa-circle-question info"></i>
                             <div class="infobox">
                                 <p>Requisito: 16-120.</p>
@@ -77,7 +77,7 @@
                         </div>
                         <div class="input-group">
                             <i class="fa-solid fa-file-invoice-dollar"></i>
-                            <input type="text" placeholder="Score" name="score_credito" />
+                            <input type="text" placeholder="Score" name="credit_score" />
                             <i class="fa-regular fa-circle-question info"></i>
                             <div class="infobox">
                                 <p>Requisito: 0-1000.</p>
@@ -88,7 +88,7 @@
                     <div class="input-row">
                         <div class="input-group">
                             <i class="fa-solid fa-calendar-days"></i>
-                            <input type="text" placeholder="Anos de cliente" name="anos_de_cliente" />
+                            <input type="text" placeholder="Anos de cliente" name="tenure" />
                             <i class="fa-regular fa-circle-question info"></i>
                             <div class="infobox">
                                 <p>Número inteiro positivo, menor que idade menos 16.</p>
@@ -96,7 +96,7 @@
                         </div>
                         <div class="input-group">
                             <i class="fa-solid fa-list"></i>
-                            <input type="text" placeholder="Serviços adquiridos" name="servicos_adquiridos" />
+                            <input type="text" placeholder="Serviços adquiridos" name="num_of_products" />
                             <i class="fa-regular fa-circle-question info"></i>
                             <div class="infobox">
                                 <p>Requisito: 0-10.</p>
@@ -107,7 +107,7 @@
                     <div class="input-row">
                         <div class="input-group">
                             <i class="fa-solid fa-dollar-sign"></i>
-                            <input type="text" placeholder="Salário estimado" name="salario_estimado" />
+                            <input type="text" placeholder="Salário estimado" name="estimated_salary" />
                             <i class="fa-regular fa-circle-question info"></i>
                             <div class="infobox">
                                 <p>Requisito: número racional positivo.</p>
@@ -115,7 +115,7 @@
                         </div>
                         <div class="input-group">
                             <i class="fa-solid fa-wallet"></i>
-                            <input type="text" placeholder="Saldo" name="saldo" />
+                            <input type="text" placeholder="Saldo" name="balance" />
                             <i class="fa-regular fa-circle-question info"></i>
                             <div class="infobox">
                                 <p>Requisito: número racional.</p>
@@ -127,12 +127,12 @@
                         <div class="input-group categorical">
                             <i class="fas fa-globe"></i>
                             <span>Membro ativo?</span>
-                            <input type="checkbox" name="membro_ativo">
+                            <input type="checkbox" name="active_member">
                         </div>
                         <div class="input-group categorical">
                             <i class="fa-solid fa-credit-card"></i>
                             <span>Tem cartão?</span>
-                            <input type="checkbox" name="tem_cartao_credito">
+                            <input type="checkbox" name="has_credit_card">
                         </div>
                     </div>
                 </li>
@@ -146,10 +146,10 @@
             <i class="fa-solid fa-arrow-left" id="leftArrowResults"></i>
             <i class="fa-solid fa-arrow-right hide" id="rightArrowResults"></i>
             <h1>Resultado</h1>
-            <p id="acuracia"></p>
-            <p id="precisao"></p>
+            <p id="accuracy"></p>
+            <p id="precision"></p>
             <p id="recall"></p>
-            <p id="predicao"></p>
+            <p id="prediction"></p>
         </div>
         <div class="history hide">
             <i class="fa-solid fa-arrow-left" id="leftArrowHistory"></i>

@@ -79,6 +79,7 @@ document.getElementById("leftArrowForm").addEventListener("click", () => {
 
 document.getElementById("rightArrowForm").addEventListener("click", () => {
   if (login && !hasPredicted) {
+    updateClientHistoryTable()
     form.classList.toggle("hide");
     document.querySelector(".history").classList.toggle("hide");
   } else {
@@ -116,8 +117,8 @@ document.querySelector(".clearBtn").addEventListener("click", () => {
   } else {
     document.getElementById("rightArrowForm").classList.add("hide");
   }
-  document.getElementById("pais").textContent = "País";
-  document.getElementById("sexo_biologico").textContent = "Sexo";
+  document.getElementById("geography").textContent = "País";
+  document.getElementById("gender").textContent = "Sexo";
   document.querySelectorAll(".dropdown span").forEach(span => {
     span.classList.remove("selected");
   });
@@ -131,7 +132,7 @@ document.querySelectorAll("input").forEach(input => {
   input.addEventListener('focus', removeBorder);
 });
 
-document.getElementById("pais-border").addEventListener('click', removeBorder);
-document.getElementById("pais-border").addEventListener('focus', removeBorder);
-document.getElementById("sexo-border").addEventListener('click', removeBorder);
-document.getElementById("sexo-border").addEventListener('focus', removeBorder);
+document.getElementById("geography-border").addEventListener('click', removeBorder);
+document.getElementById("geography-border").addEventListener('focus', removeBorder);
+document.getElementById("gender-border").addEventListener('click', removeBorder);
+document.getElementById("gender-border").addEventListener('focus', removeBorder);
