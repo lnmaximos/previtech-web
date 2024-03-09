@@ -67,7 +67,7 @@ function validateInputs() {
 }
 
 function updateClientHistoryTable() {
-  fetch("https://previtech-a544a1393ecd.herokuapp.com/get_user_clients", {
+  fetch("https://previtech-a544a1393ecd.herokuapp.com/get_user_history", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
