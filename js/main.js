@@ -140,16 +140,11 @@ form.addEventListener("submit", function (event) {
     .then(response => response.json())
     .then(data => {
       console.log(data);
-
-      const acuracia = data.acuracia;
-      const precisao = data.precisao;
-      const recall = data.recall;
-      const predicao = data.predicao;
-
-      document.getElementById("accuracy").textContent = `Acurácia: ${acuracia}`;
-      document.getElementById("precision").textContent = `Precisão: ${precisao}`;
-      document.getElementById("recall").textContent = `Recall: ${recall}`;
-      document.getElementById("prediction").textContent = `Predição: ${predicao}`;
+      
+      document.getElementById("accuracy").textContent = `Acurácia: ${data.accuracy}`;
+      document.getElementById("precision").textContent = `Precisão: ${data.precision}`;
+      document.getElementById("recall").textContent = `Recall: ${data.recall}`;
+      document.getElementById("prediction").textContent = `Predição: ${data.prediction}`;
 
       form.classList.toggle("hide");
       document.querySelector(".results").classList.toggle("hide");
